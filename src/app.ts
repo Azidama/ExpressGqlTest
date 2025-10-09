@@ -8,7 +8,7 @@ import express from 'express'
 import helmet from 'helmet'
 import hpp from 'hpp'
 import { buildSchema } from 'type-graphql'
-import { NODE_ENV, PORT, ORIGIN, CREDENTIALS } from '@config'
+import { ENVIRONMENT, PORT, ORIGIN, CREDENTIALS } from '@config'
 import { dbConnection } from '@/database/index'
 import { AuthMiddleware, AuthCheckerMiddleware } from '@middlewares/auth.middleware'
 import { ErrorMiddleware } from '@middlewares/error.middleware'
@@ -27,7 +27,7 @@ export class App {
 
   constructor(resolvers) {
     this.app = express()
-    this.env = NODE_ENV || 'development'
+    this.env = ENVIRONMENT || 'development'
     this.port = Number(PORT) || 9000
 
     this.connectToDatabase()
